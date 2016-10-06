@@ -9,19 +9,22 @@ var todo = {
         }
     }),
     init: () => {
-        todo.getNumb(16);
+        todo.getNumb(16, true);
         todo.binds();
         // todo.backgournd_animation();
     },
-    getNumb: (x) => {
+    getNumb: (x, isSecend = false) => {
         var first = Math.ceil(Math.random() * x) - 1;
-        var secend;
-        while (true) {
-            secend = Math.ceil(Math.random() * x) - 1;
-            if (secend != first) {
-                break;
+        if (isSecend) {
+            var secend;
+            while (true) {
+                secend = Math.ceil(Math.random() * x) - 1;
+                if (secend != first) {
+                    break;
+                }
             }
         }
+
         var list = $.extend([], todo.vue.todos);
         // todo.vue.todos = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var j = -1;
@@ -34,7 +37,7 @@ var todo = {
                 list[i] = 2;
                 first = -1;
             }
-            if (j == secend) {
+            if (isSecend && j == secend) {
                 todo.vue.secend = i;
                 list[i] = 2;
                 secend = -1;
@@ -113,16 +116,16 @@ var todo = {
                         if (todoList[thislist[y]] == todoList[thislist[x - 1]]) {
                             todoList[thislist[y]] *= 2;
                             todoList[thislist[x - 1]] = 0;
-                            var b = y;
-                            while (true) {
-                                if (todoList[thislist[b]] == todoList[thislist[b + 1]]) {
-                                    todoList[thislist[b + 1]] *= 2;
-                                    todoList[thislist[b]] = 0;
-                                    b++;
-                                } else {
-                                    break;
-                                }
-                            }
+                            // var b = y;
+                            // while (true) {
+                            //     if (todoList[thislist[b]] == todoList[thislist[b + 1]]) {
+                            //         todoList[thislist[b + 1]] *= 2;
+                            //         todoList[thislist[b]] = 0;
+                            //         b++;
+                            //     } else {
+                            //         break;
+                            //     }
+                            // }
                         } else {
                             x = y;
                             y--;
