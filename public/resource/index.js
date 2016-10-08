@@ -97,7 +97,7 @@ var todo = {
             }
         }
     },
-    changeNum: (to) => {
+    changeNum: function changeNum(to) {
         var todoList = $.extend([], todo.vue.todos);
         var list;
         // var list = [1, '右', '上', '左', '下'];
@@ -112,7 +112,8 @@ var todo = {
         }
         for (var i = 0; i < 4; i++) {
             var thislist = list[i];
-            var x = 3, y = 3;
+            var x = 3,
+                y = 3;
             while (true) {
                 if (todoList[thislist[x - 1]] != 0) {
                     if (todoList[thislist[y]] != 0) {
@@ -168,10 +169,10 @@ var todo = {
         });
     },
     isEnd: function isEnd(list_0) {
-        if (list_0.length < 2) {
+        if (list_0.length < 1) {
             alert('游戏结束，最高分：' + Math.max.apply(null, todo.vue.todos) + '，点击确定重新开始。');
             todo.vue.todos = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            todo.getNumb(16);
+            todo.getNumb(16, true);
             return;
         }
         todo.getNumb(list_0.length);
