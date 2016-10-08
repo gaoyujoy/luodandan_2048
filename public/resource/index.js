@@ -97,7 +97,7 @@ var todo = {
             }
         }
     },
-    changeNum: function changeNum(to) {
+    changeNum: (to) => {
         var todoList = $.extend([], todo.vue.todos);
         var list;
         // var list = [1, '右', '上', '左', '下'];
@@ -112,36 +112,20 @@ var todo = {
         }
         for (var i = 0; i < 4; i++) {
             var thislist = list[i];
-            var x = 3,
-                y = 3;
+            var x = 3, y = 3;
             while (true) {
                 if (todoList[thislist[x - 1]] != 0) {
                     if (todoList[thislist[y]] != 0) {
                         if (todoList[thislist[y]] == todoList[thislist[x - 1]]) {
                             todoList[thislist[y]] *= 2;
                             todoList[thislist[x - 1]] = 0;
-                            // var b = y;
-                            // while (true) {
-                            //     if (todoList[thislist[b]] == todoList[thislist[b + 1]]) {
-                            //         todoList[thislist[b + 1]] *= 2;
-                            //         todoList[thislist[b]] = 0;
-                            //         b++;
-                            //     } else {
-                            //         break;
-                            //     }
-                            // }
                         } else {
                             x = y;
-                            y--;
                         }
+                        y--;
                     } else {
-                        if (todoList[thislist[y + 1]] == todoList[thislist[x - 1]]) {
-                            todoList[thislist[y + 1]] = todoList[thislist[y + 1]] * 2;
-                            todoList[thislist[x - 1]] = 0;
-                        } else {
-                            todoList[thislist[y]] = todoList[thislist[x - 1]];
-                            todoList[thislist[x - 1]] = 0;
-                        }
+                        todoList[thislist[y]] = todoList[thislist[x - 1]];
+                        todoList[thislist[x - 1]] = 0;
                     }
                 }
                 x--;
